@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="A blog">
+    <meta name="keyword"  content="whitecute, blog">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          性能优化-webpack优化 - whitecute
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2021/08/04/性能优化-webpack优化/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('cover.png')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/whitecute.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#webpack" title="webpack">webpack</a>
+                            
+                              <a class="tag" href="/tags/#性能优化" title="性能优化">性能优化</a>
+                            
+                        </div>
+                        <h1>性能优化-webpack优化</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by whitecute on
+                            2021-08-04
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">2.1k</span> and
+                                Reading Time <span class="post-count">8</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Whitecute</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="性能优化-webpack"><a href="#性能优化-webpack" class="headerlink" title="性能优化 - webpack"></a>性能优化 - webpack</h1><h2 id="缩小范围-节约时间"><a href="#缩小范围-节约时间" class="headerlink" title="缩小范围,节约时间"></a>缩小范围,节约时间</h2><p>支撑点：缩小loader对文件的搜索范围,避免对不必要的文件进行转义。<br>方法：通过对include/exclude 进行设置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        include: <span class="regexp">/src/</span>,</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        user: <span class="string">"babel-loader"</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="缓存副本-节约时间"><a href="#缓存副本-节约时间" class="headerlink" title="缓存副本,节约时间"></a>缓存副本,节约时间</h2><p>支撑点：配置cache缓存loader对文件的编译副本,未做修改的文件,不会重新编译。<br>方法：大部分的loader/plugin都支持cache功能。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">        test: <span class="regexp">/\.js/</span>,</span><br><span class="line">        us: [&#123;</span><br><span class="line">            loader: <span class="string">"babel-loader"</span>,</span><br><span class="line">            options: &#123; <span class="attr">cacheDirectory</span>: <span class="literal">true</span> &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;,</span><br><span class="line">plugin: [</span><br><span class="line">    <span class="keyword">new</span> EslintPlugin(&#123;<span class="attr">cache</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置resolve-提高搜索速度-节约时间"><a href="#配置resolve-提高搜索速度-节约时间" class="headerlink" title="配置resolve,提高搜索速度,节约时间"></a>配置resolve,提高搜索速度,节约时间</h2><p>支撑点：配置了resolve,webpack不用层层查找。<br>方法：</p>
+<pre><code>- alias: 映射模块路径
+- extensive: 表明文件后缀
+- noParse: 过滤无依赖文件
+</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">        <span class="string">'#'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'@'</span>: <span class="string">'src'</span>,</span><br><span class="line">        <span class="string">'swiper'</span>: <span class="string">'swiper/js/swiper.min.js'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    extensive: [<span class="string">'.js'</span>,<span class="string">'.ts'</span>,<span class="string">'.tsx'</span>, <span class="string">'.jsx'</span>, <span class="string">'.vue'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="提前构建-节约时间"><a href="#提前构建-节约时间" class="headerlink" title="提前构建,节约时间"></a>提前构建,节约时间</h2><p>支撑点：配置DLLPlugin将第三方依赖提前打好包。<br>方法：</p>
+<pre><code>- 首先配置那些依赖作为DLL,生成DLL与DLL映射表文件
+</code></pre>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        vendor: [<span class="string">"react"</span>, <span class="string">"react-dom"</span>, <span class="string">"react-router-dom"</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="string">"production"</span>,</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        splitChunks: &#123;</span><br><span class="line">            cacheGroups: &#123;</span><br><span class="line">                vendor: &#123;</span><br><span class="line">                    chunks: <span class="string">"all"</span>,</span><br><span class="line">                    name: <span class="string">"vendor"</span>,</span><br><span class="line">                    test: <span class="string">"/node_modules/"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename:<span class="string">"[name].all.js"</span>,</span><br><span class="line">        library: <span class="string">"[name]"</span>,</span><br><span class="line">        path: AbsPath(<span class="string">"dist/static"</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> DefinePlugin(&#123;</span><br><span class="line">            <span class="string">"process.env.NODE_ENV"</span>: <span class="built_in">JSON</span>.stringify(<span class="string">"development"</span>)</span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="keyword">new</span> DLLPLugin(&#123;</span><br><span class="line">            name: <span class="string">"[name]"</span>,</span><br><span class="line">            path: AbsPath(<span class="string">"dist/static/[name]-manifest.json"</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  然后再 <code>package.json</code> 里配置执行脚本且每次构建前硬执行该脚本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"scripts"</span>: &#123;</span><br><span class="line">        <span class="string">"dll"</span>: <span class="string">"webpack --config webpack.dll.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后链接<code>DLL文件</code>并告知<code>webpack</code>可命中的<code>DLL文件</code>让其自行读取。<br>plugin 在打包时自动插入<code>DLL文件</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; DLLReferencePlugin &#125; <span class="keyword">from</span> <span class="string">"webpack"</span>;</span><br><span class="line"><span class="keyword">import</span> HtmlTagsPlugin <span class="keyword">from</span> <span class="string">"html-webpack-tags-plugin"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> DllReferencePlugin(&#123;</span><br><span class="line">            manifest: AbsPath(<span class="string">"dist/static/vendor-manifest.json"</span>)</span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="keyword">new</span> HtmlTagsPlugin(&#123;</span><br><span class="line">            append: <span class="literal">false</span>,</span><br><span class="line">            publicPath: <span class="string">"/"</span>,</span><br><span class="line">            tags: [<span class="string">"static/vendor.all.js"</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>配置后可节约几秒钟，当然也可以使用<code>autodll-webpack-plugin</code>,自动配置。</p>
+<h2 id="并行构建-节约时间"><a href="#并行构建-节约时间" class="headerlink" title="并行构建,节约时间"></a>并行构建,节约时间</h2><p>配置Thread将Loader单进程转换为多进程,好处是<code>释放CPU多核并发的优势</code>。在使用<code>webpack</code>构建项目时，webpack构建项目时需要大量的处理文件，构建过程时密集型的计算，随着构建程度的加深，文件会越来越多，后期会越来越慢。<br>并且，在nodejs环境中，webpack是单线程的，待处理的任务是需要一件一件的去处理。<br><code>文件读写</code>和<code>计算操作</code>是不可避免的，充分利用多线程的能力，去开启新的THread节约时间。<br>注意：多线程的开启是会消耗性能的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Os <span class="keyword">from</span> <span class="string">'os'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">            use: [&#123;</span><br><span class="line">                loader: <span class="string">"thread-loader"</span>,</span><br><span class="line">                options: &#123;<span class="attr">workers</span>: Os.cpus().length&#125;</span><br><span class="line">            &#125;,&#123;</span><br><span class="line">                loader: <span class="string">"babel-loader"</span>,</span><br><span class="line">                options: &#123;<span class="attr">cacheDirectory</span>: <span class="literal">true</span>&#125;</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="可视结构-分析依赖-节约时间"><a href="#可视结构-分析依赖-节约时间" class="headerlink" title="可视结构,分析依赖,节约时间"></a>可视结构,分析依赖,节约时间</h2><p>配置BundleAnalyzer分析打包文件结构,通过可视化分析那么包打包体积过大，从而分析出原因，提高打包时间。<br>BundleAnalyzer是webpack官方提供的一款插件，可视化的显示出 打包后的体积，相互依赖关系，文件是否重复，压缩后的体积等数据。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BundleAnalyzerPlugin <span class="keyword">from</span> <span class="string">'webpack-bundle-analyzer'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    plugin: [</span><br><span class="line">        <span class="keyword">new</span> BundleAnalyzerPlugin()</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="分割代码，提高利用率，减少体积"><a href="#分割代码，提高利用率，减少体积" class="headerlink" title="分割代码，提高利用率，减少体积"></a>分割代码，提高利用率，减少体积</h2><p>分割各个模块,减少重复代码,提高利用率。<br><code>webpack v4</code>中已经使用<code>splitChunks</code>来代替<code>CommonsChunkPlugin</code>实现代码分割<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        runtimeChunk: &#123;<span class="attr">name</span>: <span class="string">"manifest"</span>&#125;,</span><br><span class="line">        splitChunks: &#123;</span><br><span class="line">            cacheGroups: &#123;</span><br><span class="line">                common: &#123;</span><br><span class="line">                    minchunks: <span class="number">2</span>,</span><br><span class="line">                    name: <span class="string">"common"</span>,</span><br><span class="line">                    priority: <span class="number">5</span>,</span><br><span class="line">                    reuseExistingChunk: <span class="literal">true</span>, <span class="comment">// 重用以存在的代码</span></span><br><span class="line">                    test: AbsPath(<span class="string">"src"</span>)</span><br><span class="line">                &#125;,</span><br><span class="line">                vendor: &#123;</span><br><span class="line">                    chunks: <span class="string">"inital"</span>, <span class="comment">//代码分割类型</span></span><br><span class="line">                    name: <span class="string">"vendor"</span>, <span class="comment">// 代码名称</span></span><br><span class="line">                    priority: <span class="number">10</span>, <span class="comment">// 优先级</span></span><br><span class="line">                    test: <span class="regexp">/node_modules/</span> <span class="comment">// 校验文件正则</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, <span class="comment">// 缓存组</span></span><br><span class="line">            chunks: <span class="string">"all"</span> <span class="comment">// 代码分割类型：all 全部，async 异步， initial 入口</span></span><br><span class="line">        &#125; <span class="comment">// 代码块分割</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="摇树优化-减小体积"><a href="#摇树优化-减小体积" class="headerlink" title="摇树优化,减小体积"></a>摇树优化,减小体积</h2><p>删除项目中未被引用的代码,移除重复的代码,移除未被引用的代码。<br><code>摇树优化</code>只是对<code>ECM规范</code>生效,针对静态数据进行解析,只有<code>import/export</code>才支持静态解析,<code>import</code>会在编译过程中执行,即在执行过程前,并且具有提升效果,会在整个代码前执行。<br>webpack 将环境设置为生产环境才会生效。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    mode: &#123;</span><br><span class="line">        production</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="动态垫片-减少体积"><a href="#动态垫片-减少体积" class="headerlink" title="动态垫片,减少体积"></a>动态垫片,减少体积</h2><p>通过垫片服务根据UA返回当前浏览器代码垫片,好处：<code>无需将繁重的代码垫片打包进去</code>。每次构建都配置<code>@babel\preset-env</code>和<code>core-js</code>根据需求将<code>polyfill</code>打包进来。<br><code>@babel\preset-env</code>提供的<code>useBuiltIns</code>可按需导<code>Polyfill</code>。</p>
+<pre><code>- false: 无视`target.browsers`将所有Polyfill加载进来。
+- entry: 根据 `target.browsers`将部分Polyfill加载进来，需要载入口文件中引入 `import &quot;core-js/stable&quot;`;
+- usage: 根据`target.browsers`和检测代码里ES6的使用情况部分`Polyfill`加载进来(无需在入口文件中引入 `import &quot;core-js/stable&quot;`);
+</code></pre><p><code>动态垫片</code>可根据浏览器<code>UserAgent</code>从<code>browserlist</code>查找出当前浏览器哪些特性缺乏支持从而返回这些特性的<code>Polyfill</code>.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> HtmlTagsPlugin <span class="keyword">from</span> <span class="string">"html-webpack-tags-plugin"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> HtmlTagsPlugin(&#123;</span><br><span class="line">            append: <span class="literal">false</span>, <span class="comment">// 在生成资源后插入</span></span><br><span class="line">            publicPath: <span class="literal">false</span>, <span class="comment">// 使用公共路径</span></span><br><span class="line">            tags: [<span class="string">"https://polyfill.alicdn.com/polyfill.min.js"</span>] <span class="comment">// 资源路径</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="按需加载-减少体积"><a href="#按需加载-减少体积" class="headerlink" title="按需加载,减少体积"></a>按需加载,减少体积</h2><p>将路由页面/触发性功能单独打包为一个文件,使用时才加载。好处是 <code>减轻首屏渲染的负担</code>。功能越多导致其打包的体积越大，会导致首屏渲染速度越慢。</p>
+<p>首屏渲染时,只需要对应<code>js代码</code>而无需其他<code>js代码</code>。再webpack v4中,提供按需切割加载功能，配合<code>import()</code>做到首屏渲染减包的效果,从而加快首屏渲染。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Login = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span> (<span class="comment">/* wepackChunkName: "login" */</span><span class="string">"../..//views/login"</span>)</span><br></pre></td></tr></table></figure>
+<p>运行起来可能会报错,需要再babel中接入<code>@babel/plugin-syntax-dynamic-import</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"babel"</span>: &#123;</span><br><span class="line">        <span class="string">"plugins"</span>: [</span><br><span class="line">            <span class="string">"@babel/plugin-syntax-dynamic-import"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="作用提升-减少体积"><a href="#作用提升-减少体积" class="headerlink" title="作用提升,减少体积"></a>作用提升,减少体积</h2><p>分析模块依赖,将打包好的模块合并到一个函数中。<br>减少函数声明和内存花销。</p>
+<p>未开启<code>作用提升</code>前,构建后的代码会存在大量函数闭包。由于模块依赖,通过<code>webpack</code>打包后会转换成<code>IIFE</code>,大量闭包会导致打包后体积增大。</p>
+<p>在开启后,构建代码会按照引入顺序放到一个函数作用域里，通过适当命名以防止变量名突变，从而减少函数声明和内存花销。</p>
+<p>在<code>webpack</code>里只需要打包环境设置 <code>生产环境</code>或者显示设置 <code>concateateModules</code>;<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    optimzation: &#123;</span><br><span class="line">        concatenateModules: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="压缩资源-减少体积"><a href="#压缩资源-减少体积" class="headerlink" title="压缩资源,减少体积"></a>压缩资源,减少体积</h2><p>压缩HTML/CSS/JSS 字体/图像/音频/视频, 好处是 <code>更有效减少打包体积</code>。</p>
+<p>针对 <code>HTML</code>: 使用<code>html-webpack-plugin</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> HtmlPlugin <span class="keyword">from</span> <span class="string">'html-webpack-plugin'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        htmlPlugin(&#123;</span><br><span class="line">            minify: &#123;</span><br><span class="line">                collapseWhitespace: <span class="literal">true</span>,</span><br><span class="line">                removeComments: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>针对<code>css/js</code>代码,分别使用插件开启压缩</p>
+<pre><code>- optimize-css-assets-webpack-plugin: 压缩css代码
+- uglifyjs-webpack-plugin: ES5 js代码
+- terser-webpack-plugin: ES6 js代码
+</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> OptimizeCssAssetsPlugin <span class="keyword">from</span> <span class="string">"optimize-css-assets-webpack-plugin"</span>;</span><br><span class="line"><span class="keyword">import</span> TerserPlugin <span class="keyword">from</span> <span class="string">"terser-webpack-plugin"</span>;</span><br><span class="line"><span class="keyword">import</span> UglifyjsPlugin <span class="keyword">from</span> <span class="string">"uglifyjs-webpack-plugin"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> compressOpts = <span class="function"><span class="params">type</span> =&gt;</span> (&#123;</span><br><span class="line">    cache: <span class="literal">true</span>, <span class="comment">// 缓存文件</span></span><br><span class="line">    parallel: <span class="literal">true</span>, <span class="comment">// 并行处理</span></span><br><span class="line">    [<span class="string">`<span class="subst">$&#123;type&#125;</span>Options`</span>]: &#123;</span><br><span class="line">        beautify: <span class="literal">false</span>,</span><br><span class="line">        compress: &#123; <span class="attr">drop_console</span>: <span class="literal">true</span> &#125;</span><br><span class="line">    &#125; <span class="comment">// 压缩配置</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> compressCss = <span class="keyword">new</span> OptimizeCssAssetsPlugin(&#123;</span><br><span class="line">    cssProcessorOptions: &#123;</span><br><span class="line">        autoprefixer: &#123; <span class="attr">remove</span>: <span class="literal">false</span> &#125;, <span class="comment">// 设置autoprefixer保留过时样式</span></span><br><span class="line">        safe: <span class="literal">true</span> <span class="comment">// 避免cssnano重新计算z-index</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> compressJs = USE_ES6</span><br><span class="line">    ? <span class="keyword">new</span> TerserPlugin(compressOpts(<span class="string">"terser"</span>))</span><br><span class="line">    : <span class="keyword">new</span> UglifyjsPlugin(compressOpts(<span class="string">"uglify"</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    optimization: &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        minimizer: [compressCss, compressJs] <span class="comment">// 代码压缩</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">减少时间</th>
+<th style="text-align:left">减少体积</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">配置loader的属性include/exclude 减少构建的范围</td>
+<td style="text-align:left">摇树优化，根据import/export 过滤的模块,生产环境模式下</td>
+</tr>
+<tr>
+<td style="text-align:left">配置loader/plugin的cache去减少构建的时间</td>
+<td style="text-align:left">公共代码提取，使用splitChunk，分割代码</td>
+</tr>
+<tr>
+<td style="text-align:left">配置resolve定向搜索</td>
+<td style="text-align:left">动态垫片，使用第三方polyfill服务</td>
+</tr>
+<tr>
+<td style="text-align:left">配置DLL 提前打好第三方包<br />auto-webpack-plugin</td>
+<td style="text-align:left">按需加载，使用@babel/plugin-syntax-dynamic-import,结合webpack-import()使用<br />减少路由功能组件加载首页</td>
+</tr>
+<tr>
+<td style="text-align:left">配置thread-loader开启多线程</td>
+<td style="text-align:left">作用提升，相同的依赖，打包好放置同一个函数中，配置生产环境或者显示设置concatenateModules:true</td>
+</tr>
+<tr>
+<td style="text-align:left">配置webpack-bundle-analyzer可视化分析包问题</td>
+<td style="text-align:left">压缩资源：html/css/js,相对应的plugin</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>原文出处： <a href="https://juejin.cn/post/6981673766178783262" target="_blank" rel="noopener">https://juejin.cn/post/6981673766178783262</a></p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2021/08/16/设计模式-策略模式/" data-toggle="tooltip" data-placement="top" title="设计模式-策略模式">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2021/07/28/first-day/" data-toggle="tooltip" data-placement="top" title="First-day">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        A Troupe of little vagrants of the world, leave your footprints in my words.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+<!-- netease; qqkg -->
+<!--
+<script src="/js/music-player/player.js?library=config.music.library.js"></script>
+-->
+<script src="../../../../js/music-player/player.js?library=netease&music=https://kg.qq.com/node/play?s=7deFpz7Z26Jmv7di&g_f=share_html"></script>
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#性能优化-webpack"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">性能优化 - webpack</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#缩小范围-节约时间"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">缩小范围,节约时间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#缓存副本-节约时间"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">缓存副本,节约时间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置resolve-提高搜索速度-节约时间"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">配置resolve,提高搜索速度,节约时间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#提前构建-节约时间"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">提前构建,节约时间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#并行构建-节约时间"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">并行构建,节约时间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#可视结构-分析依赖-节约时间"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">可视结构,分析依赖,节约时间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#分割代码，提高利用率，减少体积"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">分割代码，提高利用率，减少体积</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#摇树优化-减小体积"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">摇树优化,减小体积</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#动态垫片-减少体积"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">动态垫片,减少体积</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#按需加载-减少体积"><span class="toc-nav-number">1.10.</span> <span class="toc-nav-text">按需加载,减少体积</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#作用提升-减少体积"><span class="toc-nav-number">1.11.</span> <span class="toc-nav-text">作用提升,减少体积</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#压缩资源-减少体积"><span class="toc-nav-number">1.12.</span> <span class="toc-nav-text">压缩资源,减少体积</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结"><span class="toc-nav-number">1.13.</span> <span class="toc-nav-text">总结</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#webpack" title="webpack">webpack</a>
+                        
+                          <a class="tag" href="/tags/#性能优化" title="性能优化">性能优化</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://whitecutexu.github.io/" target="_blank">Whitecute&#39;s Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Whitecute&#39;s Web</a></li>
+                    
+                        <li><a href="https://github.com/whitecuteXu" target="_blank">Whitecute&#39;s Github</a></li>
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; whitecute 2021 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot;,&quot;🍀&quot;,&quot;❤️&quot;,&quot;🔥&quot;,&quot;✨&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

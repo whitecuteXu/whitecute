@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="A blog">
+    <meta name="keyword"  content="whitecute, blog">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          设计模式-设计模式原则 - whitecute
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2021/08/18/设计模式-设计模式原则/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('rules.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/whitecute.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                            
+                        </div>
+                        <h1>设计模式-设计模式原则</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by whitecute on
+                            2021-08-18
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">2.5k</span> and
+                                Reading Time <span class="post-count">10</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Whitecute</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="七大设计原则"><a href="#七大设计原则" class="headerlink" title="七大设计原则"></a>七大设计原则</h1><h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><blockquote>
+<p>其核心为：开放扩展，封闭修改</p>
+</blockquote>
+<ul>
+<li>优点</li>
+<li><ul>
+<li>开放了扩展，增强了类得扩展性，对于类得新增特性友好</li>
+</ul>
+</li>
+<li><ul>
+<li>封闭了修改，增加了类得稳定性，对于类已知模块增强了持久性</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>对于工厂生产不同得电脑 MacBook Surface</p>
+</blockquote>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MacBook</span> <span class="title">implements</span> <span class="title">Computer</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Surface</span> <span class="title">implements</span> <span class="title">Computer</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    produceComputer(type) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( type === <span class="string">'MacBook'</span> ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> MacBook();</span><br><span class="line">        &#125; <span class="keyword">if</span> <span class="keyword">else</span> ( type === <span class="string">'Surface'</span> ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Surface();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当前得写法虽然简单，但是违反了开闭原则,应该去修改已有得方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    produceComputer() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MacBook</span> <span class="title">implements</span> <span class="title">Computer</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Surface</span> <span class="title">implements</span> <span class="title">Computer</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppleFactory</span> <span class="title">implements</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    produceComputer() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MacBook();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MSSurFactory</span> <span class="title">implements</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    produceComputer() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Surface();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先定义抽象的接口,再通过实现接口,避免去修改现有的代码。</p>
+<h2 id="单一职责-SPR"><a href="#单一职责-SPR" class="headerlink" title="单一职责 SPR"></a>单一职责 SPR</h2><blockquote>
+<p>单一职责就是一个类负责一个单一的职责。<br>从软件变化的角度来看就是只有一个让自身类发生变化的因素。<br>如果一个类负责两个职责,职责A和职责B,那么当修改职责A时,很有可能会导致职责B出现问题。</p>
+</blockquote>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<p>牛羊猪呼吸的是空气,鱼是呼吸的水</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    breathe(type) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的空气`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> animal = <span class="keyword">new</span> Animal();</span><br><span class="line">animal.breathe(<span class="string">"猪"</span>);</span><br><span class="line">animal.breathe(<span class="string">"牛"</span>);</span><br><span class="line">animal.breathe(<span class="string">"羊"</span>);</span><br><span class="line"><span class="comment">// 鱼是呼吸水 </span></span><br><span class="line">animal.breather(<span class="string">"鱼"</span>);</span><br></pre></td></tr></table></figure>
+<p>在这里发现鱼是呼吸得水</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Terrestrial</span> </span>&#123;</span><br><span class="line">    breathe(type) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的空气`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Aquatic</span> </span>&#123;</span><br><span class="line">    breathe(type) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的水`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> terrestrial = <span class="keyword">new</span> Terrestrial();</span><br><span class="line">terrestrial.breathe(<span class="string">"猪"</span>);</span><br><span class="line">terrestrial.breathe(<span class="string">"牛"</span>);</span><br><span class="line">terrestrial.breathe(<span class="string">"羊"</span>);</span><br><span class="line"><span class="comment">// 鱼是呼吸水 </span></span><br><span class="line"><span class="keyword">const</span> aquatic = <span class="keyword">new</span> Aquatic();</span><br><span class="line">aquatic.breather(<span class="string">"鱼"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样符合单一职责得原则,但是当不同的动物呼吸不同的物质时，需要多加上其他的类，这样会增大开销。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    breathe(type) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"鱼"</span> === type) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的水`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的空气`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> animal = <span class="keyword">new</span> Animal();</span><br><span class="line">animal.breathe(<span class="string">"猪"</span>);</span><br><span class="line">animal.breathe(<span class="string">"牛"</span>);</span><br><span class="line">animal.breathe(<span class="string">"羊"</span>);</span><br><span class="line">animal.breather(<span class="string">"鱼"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样修改后，虽然简单了，但是在以后的修改中, 后期可能会出现breathe输出的结果不是预期的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    breatheAir(type) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的水`</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    breatheWater(type) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"鱼"</span> === type) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的水`</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;type&#125;</span> 呼吸的空气`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> animal = <span class="keyword">new</span> Animal();</span><br><span class="line">animal.breatheAir(<span class="string">"猪"</span>);</span><br><span class="line">animal.breatheAir(<span class="string">"牛"</span>);</span><br><span class="line">animal.breatheAir(<span class="string">"羊"</span>);</span><br><span class="line">animal.breatheWater(<span class="string">"鱼"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样虽然破坏了单一职责原则，但是并没有对原来的代码进行修改。</p>
+<h2 id="里氏代替原则"><a href="#里氏代替原则" class="headerlink" title="里氏代替原则"></a>里氏代替原则</h2><p>原有的功能P 通过类A实现的,现在需要增加一个新功能P2,但是这个P2是需要原来的功能P和新功能P1组成,由A的子类B完成,<br>但是完成新功能P2后,对原来的功能P造成了破坏。</p>
+<p><strong>里氏代替</strong>的重点在于, 不影响原功能但是不是不能修改方法。</p>
+<p>继承的含义：父类已经具体实现的方法,子类再次对父类的这些方法做出了修改,就是最整个继承体系最大的破坏。</p>
+<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<ul>
+<li>两数相减</li>
+<li>两数相加,再加100</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    func1( a, b ) &#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="title">extend</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    func1(a, b) &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func2() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.func1(a, b) + <span class="number">100</span></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于B重写了A的方法，在使用过程中，大量的使用B的方法，会造成方法的结果达不到预期。<br>在实际的开发中，会重写父类的方法，这样会不可避免的造成大量的错误。</p>
+<p>里氏原则就是<strong>可以扩展，但是不可修改原来的功能</strong></p>
+<h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><blockquote>
+<ul>
+<li>定义：高层次模块不应该依赖于低层次模块，二者都应该依赖于抽象</li>
+<li>抽象不应该依赖于细节，细节应该依赖于抽象</li>
+</ul>
+</blockquote>
+<h3 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<p>母亲给小孩子读书</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Book &#123;</span><br><span class="line">    content: <span class="string">"书的内容"</span>;</span><br><span class="line"></span><br><span class="line">    getContent() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Mother &#123;</span><br><span class="line">    say(book: Book) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(book.getContent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span>  mother = <span class="keyword">new</span> Mother();</span><br><span class="line">mother.say( <span class="keyword">new</span> Book() );</span><br></pre></td></tr></table></figure>
+<p>当我们换了内容后比如一份报纸时：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> NewsPaper &#123;</span><br><span class="line">    content: <span class="string">"报纸的内容"</span>,</span><br><span class="line">    </span><br><span class="line">    getContent() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们会发现Mother只能读取书籍,而不能读取报纸！</p>
+<p>而当我们依赖于抽象接口时</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Reader &#123;</span><br><span class="line">    content: <span class="built_in">string</span>;</span><br><span class="line">    getContent: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Book <span class="keyword">implements</span> Reader &#123;</span><br><span class="line">    content: <span class="string">"书的内容"</span>;</span><br><span class="line"></span><br><span class="line">    getContent() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> NewsPaper <span class="keyword">implements</span> Reader &#123;</span><br><span class="line">    content: <span class="string">"报纸的内容"</span>,</span><br><span class="line">    </span><br><span class="line">    getContent() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Mother &#123;</span><br><span class="line">    say(reader: Reader) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(reader.getContent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span>  mother = <span class="keyword">new</span> Mother();</span><br><span class="line">mother.say( <span class="keyword">new</span> Book() );</span><br><span class="line">mother.say( <span class="keyword">new</span> NewsPaper() );</span><br></pre></td></tr></table></figure>
+<p>当Mother类依赖于接口而不依赖于具体某一类时，便于拓展，降低了耦合。<br>而不依赖于接口，Mother为高层，对其做修改很有可能会导致错误,降低系统的稳定性。</p>
+<p><strong>依赖倒转的原则</strong>就是面向接口编程。</p>
+<h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><ul>
+<li><strong>接口隔离的原则</strong>其实更关键的在于接口的分离。</li>
+<li><strong>强调</strong>一个类对于另外的一个类应该建立在最小的接口基础上。</li>
+</ul>
+<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<p>接口类的实现<br><img src="ISP-1.png" alt=""></p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> I &#123;</span><br><span class="line">    method1: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">    method2: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">    method3: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">    method4: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">    method5: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> A &#123;</span><br><span class="line">    depend1(i: I) &#123;</span><br><span class="line">        i.method1();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend2(i: I) &#123;</span><br><span class="line">        i.method2();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend3(i: I) &#123;</span><br><span class="line">        i.method3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> B <span class="keyword">implements</span> I &#123;</span><br><span class="line">    method1: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法1'</span>);</span><br><span class="line">    method2: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法2'</span>);</span><br><span class="line">    method3: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方3'</span>);</span><br><span class="line">    method4: <span class="function"><span class="params">()</span> =&gt;</span> &#123; ... &#125;;</span><br><span class="line">    method5: <span class="function"><span class="params">()</span> =&gt;</span> &#123; ... &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> C &#123;</span><br><span class="line">    depend1(i: I) &#123;</span><br><span class="line">        i.method1();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend2(i: I) &#123;</span><br><span class="line">        i.method4();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend3(i: I) &#123;</span><br><span class="line">        i.method5();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> D <span class="keyword">implements</span> I &#123;</span><br><span class="line">    method1: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法1'</span>);</span><br><span class="line">    method2: <span class="function"><span class="params">()</span> =&gt;</span> &#123; ... &#125;;</span><br><span class="line">    method3: <span class="function"><span class="params">()</span> =&gt;</span> &#123; ... &#125;;</span><br><span class="line">    method4: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法2'</span>);</span><br><span class="line">    method5: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> A();</span><br><span class="line">a.depend1(<span class="keyword">new</span> B());</span><br><span class="line">a.depend2(<span class="keyword">new</span> B());</span><br><span class="line">a.depend3(<span class="keyword">new</span> B());</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> C();</span><br><span class="line">c.depend1(<span class="keyword">new</span> D());</span><br><span class="line">c.depend2(<span class="keyword">new</span> D());</span><br><span class="line">c.depend3(<span class="keyword">new</span> D());</span><br></pre></td></tr></table></figure>
+<p>可以发现当前的代码过于臃肿，C,D 实现接口I,但是 有些方法是没必要实现的。<br>这些不符合接口隔离的原则,必须进行拆分</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> I &#123;</span><br><span class="line">    method1: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> II &#123;</span><br><span class="line">    method2: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">    method3: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> III &#123;</span><br><span class="line">    method4: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">    method5: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> A &#123;</span><br><span class="line">    depend1(i: I) &#123;</span><br><span class="line">        i.method1();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend2(i: II) &#123;</span><br><span class="line">        i.method2();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend3(i: II) &#123;</span><br><span class="line">        i.method3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> B <span class="keyword">implements</span> I, II &#123;</span><br><span class="line">    method1: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法1'</span>);</span><br><span class="line">    method2: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法2'</span>);</span><br><span class="line">    method3: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> C &#123;</span><br><span class="line">    depend1(i: I) &#123;</span><br><span class="line">        i.method1();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend2(i: III) &#123;</span><br><span class="line">        i.method4();</span><br><span class="line">    &#125;,</span><br><span class="line">    depend3(i: III) &#123;</span><br><span class="line">        i.method5();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> D <span class="keyword">implements</span> I, III &#123;</span><br><span class="line">    method1: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法1'</span>);</span><br><span class="line">    method4: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方法2'</span>);</span><br><span class="line">    method5: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'扩展的方3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> A();</span><br><span class="line">a.depend1(<span class="keyword">new</span> B());</span><br><span class="line">a.depend2(<span class="keyword">new</span> B());</span><br><span class="line">a.depend3(<span class="keyword">new</span> B());</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> C();</span><br><span class="line">c.depend1(<span class="keyword">new</span> D());</span><br><span class="line">c.depend2(<span class="keyword">new</span> D());</span><br><span class="line">c.depend3(<span class="keyword">new</span> D());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>尽可能的去细化接口。</li>
+<li>如果接口细化的过于细小，会使得设计复杂化。</li>
+</ul>
+<h2 id="合成-聚合原则"><a href="#合成-聚合原则" class="headerlink" title="合成/聚合原则"></a>合成/聚合原则</h2><p>合成：例如身体和腿,是一种强的拥有关系。<br>聚合：例如狼和狼群,是一种弱的拥有关系。</p>
+<p><strong>核心</strong>：使用合成/聚合,而不使用继承，降低了类与类之间的耦合度,增强了灵活性。<br>当使用继承时，修改了父类，子类也有随之改变，耦合度太高，减少了灵活性。</p>
+<h3 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h3><p>合成: 订单与订单明细的关系, 当删除订单后,订单明细也删除。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Order &#123;</span><br><span class="line">    orderDetail: <span class="keyword">new</span> OrderDetail(),</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> OrderDetail &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>聚合：</p>
+<p>订单与商品的关系, 当删除订单后, 商品依然存在。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Order &#123;</span><br><span class="line">    <span class="keyword">public</span> goods: [],</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">goods: Goods[]</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.goods = goods;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Goods &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依赖</p>
+<p>订单中的价格,使用参数传入。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Order &#123;</span><br><span class="line">    count( price: Price ) &#123;</span><br><span class="line">        <span class="keyword">return</span>  price * count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Price &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><ul>
+<li>迪米特法则别名：最少知道法则。</li>
+<li>通俗的解释：一个对象与另外一个对象为陌生关系，只能通过最直接的朋友去通信。</li>
+<li>最直接的朋友：</li>
+<li><ul>
+<li>朋友关系：而出现在对象中的参数对象，成员变量对象，返回值对象。</li>
+</ul>
+</li>
+<li><ul>
+<li>陌生关系：不以朋友关系出现的方式成为陌生关系。</li>
+</ul>
+</li>
+</ul>
+<p>就是说<strong>陌生的类最好不要以朋友关系处在类的内部</strong></p>
+<h3 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<p>家人去监狱看望犯人，嘱咐犯人：“狱友之间要相互帮助”, 狱友回答：“我们是狱友”。</p>
+</blockquote>
+<p>家人</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Family &#123;</span><br><span class="line">    visitPrisoner(prisoner: Prisoners) &#123;</span><br><span class="line">        Inmates inmates = prisoner.helpEachOther();</span><br><span class="line">        inmates.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>犯人</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Prisoners  &#123;</span><br><span class="line">    inmates = <span class="keyword">new</span> Inmates();</span><br><span class="line">    helpEachOther() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"狱友之间要相互帮助"</span>);</span><br><span class="line">        <span class="keyword">return</span> inmates;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>狱友</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Inmates  &#123;</span><br><span class="line">    say() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"我们是狱友"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>场景</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> family = <span class="keyword">new</span> Family();</span><br><span class="line">family.visitPrisoner(<span class="keyword">new</span> Prisoners());</span><br></pre></td></tr></table></figure>
+<p>家人认识犯人，不认识狱友; 而在此场景中, 家人直接与狱友通信了，违反了迪米特原则。</p>
+<p>修改为<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Family &#123;</span><br><span class="line">    visitPrisoner(prisoner: Prisoners) &#123;</span><br><span class="line">        prisoner.helpEachOther()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Prisoners  &#123;</span><br><span class="line">    inmates = <span class="keyword">new</span> Inmates();</span><br><span class="line">    helpEachOther() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"狱友之间要相互帮助"</span>);</span><br><span class="line">        <span class="keyword">this</span>.inmates.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Inmates  &#123;</span><br><span class="line">    say() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"我们是狱友"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> family = <span class="keyword">new</span> Family();</span><br><span class="line">family.visitPrisoner(<span class="keyword">new</span> Prisoners());</span><br></pre></td></tr></table></figure></p>
+<p>家人通过犯人来获取回复</p>
+<p><strong>重点</strong>：两个陌生的类通过第三方类获取通信。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>简述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开闭原则</td>
+<td>对扩展开发，对修改封闭</td>
+</tr>
+<tr>
+<td>单一职责原则</td>
+<td>一个类只有一种引起变化的原因<br />最低限度一个方法只负责一个行为/结果</td>
+</tr>
+<tr>
+<td>里氏代替原则</td>
+<td>在继承时,在子类中不去修改重写父类的方法</td>
+</tr>
+<tr>
+<td>依赖倒转原则</td>
+<td>类不去依赖一个具体类，应该去依赖接口</td>
+</tr>
+<tr>
+<td>接口隔离原则</td>
+<td>细分接口，避免不必要的接口实现</td>
+</tr>
+<tr>
+<td>合成/聚合原则</td>
+<td>合成聚合好过继承</td>
+</tr>
+<tr>
+<td>迪米特原则</td>
+<td>陌生的类依赖第三方类通信</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><i>原文: <a href="https://zhuanlan.zhihu.com/p/24614363" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24614363</a></i></p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2021/08/31/框架-vue和react的应用场景/" data-toggle="tooltip" data-placement="top" title="框架-vue和react的应用场景">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2021/08/18/设计模式-状态模式/" data-toggle="tooltip" data-placement="top" title="设计模式-状态模式">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        A Troupe of little vagrants of the world, leave your footprints in my words.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+<!-- netease; qqkg -->
+<!--
+<script src="/js/music-player/player.js?library=config.music.library.js"></script>
+-->
+<script src="../../../../js/music-player/player.js?library=netease&music=https://kg.qq.com/node/play?s=7deFpz7Z26Jmv7di&g_f=share_html"></script>
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#七大设计原则"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">七大设计原则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#开闭原则"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">开闭原则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#单一职责-SPR"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">单一职责 SPR</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例-1"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#里氏代替原则"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">里氏代替原则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例-2"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#依赖倒转原则"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">依赖倒转原则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例-3"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#接口隔离原则"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">接口隔离原则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例-4"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#合成-聚合原则"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">合成&#x2F;聚合原则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例-5"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#迪米特法则"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">迪米特法则</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实例-6"><span class="toc-nav-number">1.7.1.</span> <span class="toc-nav-text">实例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#小结"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">小结</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://whitecutexu.github.io/" target="_blank">Whitecute&#39;s Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Whitecute&#39;s Web</a></li>
+                    
+                        <li><a href="https://github.com/whitecuteXu" target="_blank">Whitecute&#39;s Github</a></li>
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; whitecute 2021 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot;,&quot;🍀&quot;,&quot;❤️&quot;,&quot;🔥&quot;,&quot;✨&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
