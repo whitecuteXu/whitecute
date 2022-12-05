@@ -192,10 +192,128 @@ type StopHandle = () => void
 - `options`: 可选参数,用来调整副作用的刷新时机以及调试依赖
   - `flush`: 侦听器执行时机
     - pre: 组件渲染前执行
-    - post: 组件延迟到渲染后执行
+    - post: 延迟到渲染后执行
     - sync: 响应依赖发生改变后立马执行
   - onTrack:
   - onTrigger:
 - `StopHandle`: 停止副作用函数
 
 ## watch
+
+```js
+// 侦听单个来源
+function watch<T>(
+  source: WatchSource<T>,
+  callback: WatchCallback<T>,
+  options?: WatchOptions
+): StopHandle
+
+// 侦听多个来源
+function watch<T>(
+  sources: WatchSource<T>[],
+  callback: WatchCallback<T[]>,
+  options?: WatchOptions
+): StopHandle
+
+type WatchCallback<T> = (
+  value: T,
+  oldValue: T,
+  onCleanup: (cleanupFn: () => void) => void
+) => void
+
+type WatchSource<T> =
+  | Ref<T> // ref
+  | (() => T) // getter  一个函数返回一个值
+  | T extends object   // 一个对象  
+  ? T
+  : never // 响应式对象
+
+interface WatchOptions extends WatchEffectOptions {
+  immediate?: boolean // 默认：false
+  deep?: boolean // 默认：false
+  flush?: 'pre' | 'post' | 'sync' // 默认：'pre'
+  onTrack?: (event: DebuggerEvent) => void
+  onTrigger?: (event: DebuggerEvent) => void
+}
+```
+
+- immediate： 在执行器创建时就执行
+- deep： 如果时对象进行深度遍历
+- flush：回调的刷新时机
+- onTrack： 侦听侦听器的依赖
+- onTrigger：侦听侦听器的依赖
+
+# 响应式工具函数
+
+## isRef()
+
+检查某个值是否是`ref`返回`true/false`
+
+## unref()
+
+如果参数是`ref`则返回內部值`.value`,如果不是则返回它自身
+
+## toRef()
+
+基于响应式对象的属性, 创建一个对应的`ref对象`,修改响应式对象上属性的值,将更新`ref对象`的值,反之亦然
+
+## toRefs()
+
+将响应式对象转化为普通对象,这个普通对象上每个属性都转化为对应的`ref`, 都是使用的`toRef()`转化
+
+- 只转化可枚举属性,不存在得属性使用`toRef()`
+- 最佳实践为 在组合式函数返回使用`toRefs()`,在使用时**结构/展开**而不丢失其响应式
+
+## isProxy()
+
+检查对象是否是 `reactive()、readonly()、shallowReactive() 或 shallowReadonly()`创建的响应式对象,返回`true/false`
+
+## isReactive()
+
+检查对象是否由`reactive(), shallowReactive()`创建得响应式对象,返回`true/false`
+
+## isReadonly()
+
+检查对象是否由`readonly(), shallowReadonly()`创建得响应式对象,返回`true/false`
+
+- readonly, shallowReadonly是没有`set`的`computed`的`Ref`
+
+# 响应式的进阶
+
+## shallowRef()
+
+只会对`.value`的访问进行响应式,不会对其属性进行递归深层递归变为响应式
+
+## triggerRef()
+
+强制触发一个`shallowRef()`对象属性的值改变,监测是递归的
+
+## customRef()
+
+自定义一个`Ref`, 自定义其响应式的 **追踪依赖** 以及 **更新触发**
+
+```js
+function customRef<T>(factory: CustomRefFactory<T>): Ref<T>
+
+type CustomRefFactory<T> = (
+  track: () => void,
+  trigger: () => void
+) => {
+  get: () => T
+  set: (value: T) => void
+}
+```
+
+- 参数为`track`和`trigger`, 一般 `track`实在 `get`中执行，`trigger`是在`set`中执行, 自己控制 依赖追踪 和 触发更新的时机
+- `get/set` 函数中可以使用异步
+
+## shallowReactive
+
+只对对象的根属性进行响应式,不会进行深层次的处理, 意味着值为`ref`的属性不会**自动解包**(template中解包)
+
+## shallowReadonly
+
+只对对象的根属性进行响应式只读,不会进行深层次的处理, 意味着值为`ref`的属性不会**自动解包**(template中解包),
+对其非根属性可以进行改写但是是非响应式的
+
+
