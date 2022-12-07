@@ -325,9 +325,7 @@ type CustomRefFactory<T> = (
 
 ## markRaw
 
-
 `markRaw()`标记一个对象不可被代理,返回该对象本身
-
 
 ## effectScope
 
@@ -363,4 +361,3 @@ function getCurrentScope(): EffectScope | undefined
 ```js
 function onScopeDispose(fn: () => void): void
 ```
-
