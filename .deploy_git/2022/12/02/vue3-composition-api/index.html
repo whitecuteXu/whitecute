@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="A blog">
+    <meta name="keyword"  content="whitecute, blog">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          vue3-composition-api - whitecute
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2022/12/02/vue3-composition-api/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/whitecute.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#vue3" title="vue3">vue3</a>
+                            
+                        </div>
+                        <h1>vue3-composition-api</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by whitecute on
+                            2022-12-02
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">1.8k</span> and
+                                Reading Time <span class="post-count">7</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Whitecute</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Vue3-响应式原理"><a href="#Vue3-响应式原理" class="headerlink" title="Vue3 响应式原理"></a>Vue3 响应式原理</h1><h2 id="ref-amp-reactive"><a href="#ref-amp-reactive" class="headerlink" title="ref &amp; reactive"></a>ref &amp; reactive</h2><p><code>ref</code>使用<code>getter / setter</code> 劫持数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ref</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> refObject= &#123;</span><br><span class="line">        <span class="keyword">get</span> value() &#123;</span><br><span class="line">            track(refObject, <span class="string">'value'</span>);</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span> value(newValue) &#123;</span><br><span class="line">            value = newValue;</span><br><span class="line">            trigger(refObject, <span class="string">'value'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> refObject;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>reactive</code>使用 <code>Proxy</code> 劫持数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reactive</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">        <span class="keyword">get</span>(target, key) &#123;</span><br><span class="line">            track(target, key);</span><br><span class="line">            <span class="keyword">return</span> target[key];</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span>(target, key, value) &#123;</span><br><span class="line">            target[key] = value;</span><br><span class="line">            trigger(target, key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="track-跟踪"><a href="#track-跟踪" class="headerlink" title="track 跟踪"></a>track 跟踪</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> activeEffect;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">track</span>(<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( activeEffect ) &#123;</span><br><span class="line">        <span class="keyword">const</span> effects = getSubscriberForProperty(target, key);</span><br><span class="line">        effects.add(activeEffect);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="trigger-触发"><a href="#trigger-触发" class="headerlink" title="trigger 触发"></a>trigger 触发</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trigger</span>(<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> effects = getSubscriberForProperty(target, key);</span><br><span class="line">    effects.forEach(<span class="function"><span class="params">effect</span> =&gt;</span> effect());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="watchEffect-响应式副作用"><a href="#watchEffect-响应式副作用" class="headerlink" title="watchEffect  响应式副作用"></a>watchEffect  响应式副作用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, watchEffect &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> A0 = ref(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">const</span> A1 = ref(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> A2 = ref()</span><br><span class="line"></span><br><span class="line">watchEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 追踪 A0 和 A1</span></span><br><span class="line">  A2.value = A0.value + A1.value</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将触发副作用</span></span><br><span class="line">A0.value = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><code>ref</code>或者<code>reactive</code>创建响应式对象,通过<code>watchEffect</code>获取响应式副作用,从而达到响应式的目的。</p>
+<h1 id="响应式的核心"><a href="#响应式的核心" class="headerlink" title="响应式的核心"></a>响应式的核心</h1><h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><ul>
+<li>接收任何类型的值</li>
+<li>返回一个<code>get/set</code>包含响应式的<code>.value</code>的对象</li>
+<li>如果<code>value</code>是集合类型会自动使用<code>reactive</code>进行响应式的转化</li>
+</ul>
+<h3 id="ref的解包"><a href="#ref的解包" class="headerlink" title="ref的解包"></a>ref的解包</h3><ul>
+<li>作为顶层属性被访问时,会自动解包,不需要<code>.value</code>,如果不做为上下文的顶级属性时,不会自动解包</li>
+<li>在响应式对象中会自动解包，表现得跟一般属性一致</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = ref(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">  count</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(state.count) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">state.count = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(count.value) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>ref</code>在数组和集合的响应式类型中不会解包</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> books = reactive([ref(<span class="string">'Vue 3 Guide'</span>)])</span><br><span class="line"><span class="comment">// 这里需要 .value</span></span><br><span class="line"><span class="built_in">console</span>.log(books[<span class="number">0</span>].value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> map = reactive(<span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'count'</span>, ref(<span class="number">0</span>)]]))</span><br><span class="line"><span class="comment">// 这里需要 .value</span></span><br><span class="line"><span class="built_in">console</span>.log(map.get(<span class="string">'count'</span>).value)</span><br></pre></td></tr></table></figure>
+<h2 id="reactive"><a href="#reactive" class="headerlink" title="reactive"></a>reactive</h2><ul>
+<li>接收 <code>array</code>, <code>object</code>, <code>map</code>, <code>set</code> 这样的对象集合类型</li>
+<li>vue通过属性的响应式追踪,如果更改了对象集合类型的引用，会导致响应式的丢失</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = reactive(&#123; count: <span class="number">0</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// n 是一个局部变量，同 state.count</span></span><br><span class="line"><span class="comment">// 失去响应性连接</span></span><br><span class="line"><span class="keyword">let</span> n = state.count</span><br><span class="line"><span class="comment">// 不影响原始的 state</span></span><br><span class="line">n++</span><br><span class="line"></span><br><span class="line"><span class="comment">// count 也和 state.count 失去了响应性连接</span></span><br><span class="line"><span class="keyword">let</span> &#123; count &#125; = state</span><br><span class="line"><span class="comment">// 不会影响原始的 state</span></span><br><span class="line">count++</span><br><span class="line"></span><br><span class="line"><span class="comment">// 该函数接收一个普通数字，并且</span></span><br><span class="line"><span class="comment">// 将无法跟踪 state.count 的变化</span></span><br><span class="line">callSomeFunction(state.count)</span><br></pre></td></tr></table></figure>
+<h2 id="computed-计算属性"><a href="#computed-计算属性" class="headerlink" title="computed 计算属性"></a>computed 计算属性</h2><ul>
+<li><code>computed</code>期望接收一个<code>getter</code>函数,返回一个 <strong>计算属性的ref</strong></li>
+<li><code>computed</code>自动追踪函数内的响应式依赖</li>
+<li><code>computed</code>计算属性基于响应式依赖的缓存,当依赖没有被改变,不会去主动执行<code>getter</code>函数</li>
+<li><code>computed</code>默认只有<code>get</code>,我们也可以设置<code>set</code>变成一个可写的计算属性</li>
+<li><code>computed</code>的<code>get</code>中不要包含其他的副作用, 请求以及操作DOM</li>
+</ul>
+<h2 id="watchEffect-侦听器"><a href="#watchEffect-侦听器" class="headerlink" title="watchEffect 侦听器"></a>watchEffect 侦听器</h2><p>立即运行一个函数,同时响应式的跟踪其依赖,并当依赖更新时重新运行函数</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watchEffect</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  effect: (onCleanup: OnCleanup) =&gt; <span class="built_in">void</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">  options?: WatchEffectOptions</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">StopHandle</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">type</span> <span class="title">OnCleanup</span> = (<span class="params">cleanupFn: () =&gt; <span class="built_in">void</span></span>) =&gt; <span class="title">void</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">interface</span> <span class="title">WatchEffectOptions</span> </span>&#123;</span><br><span class="line">  flush?: <span class="string">'pre'</span> | <span class="string">'post'</span> | <span class="string">'sync'</span> <span class="comment">// 默认：'pre'</span></span><br><span class="line">  onTrack?: <span class="function">(<span class="params">event: DebuggerEvent</span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">  onTrigger?: <span class="function">(<span class="params">event: DebuggerEvent</span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> StopHandle = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>effect</code>: 要执行的副作用函数,这个函数也包含一个参数,这个参数再下一次调用前被执行,用于执行清除无效的副作用</li>
+<li><code>options</code>: 可选参数,用来调整副作用的刷新时机以及调试依赖<ul>
+<li><code>flush</code>: 侦听器执行时机<ul>
+<li>pre: 组件渲染前执行</li>
+<li>post: 延迟到渲染后执行</li>
+<li>sync: 响应依赖发生改变后立马执行</li>
+</ul>
+</li>
+<li>onTrack:</li>
+<li>onTrigger:</li>
+</ul>
+</li>
+<li><code>StopHandle</code>: 停止副作用函数</li>
+</ul>
+<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 侦听单个来源</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>&lt;<span class="title">T</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  source: WatchSource&lt;T&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  callback: WatchCallback&lt;T&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  options?: WatchOptions</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">StopHandle</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">// 侦听多个来源</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">watch</span>&lt;<span class="title">T</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  sources: WatchSource&lt;T&gt;[],</span></span></span><br><span class="line"><span class="function"><span class="params">  callback: WatchCallback&lt;T[]&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  options?: WatchOptions</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">StopHandle</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">type</span> <span class="title">WatchCallback</span>&lt;<span class="title">T</span>&gt; = (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  value: T,</span></span></span><br><span class="line"><span class="function"><span class="params">  oldValue: T,</span></span></span><br><span class="line"><span class="function"><span class="params">  onCleanup: (cleanupFn: (</span>) =&gt; <span class="title">void</span>) =&gt; <span class="title">void</span></span></span><br><span class="line"><span class="function">) =&gt; <span class="title">void</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">type</span> <span class="title">WatchSource</span>&lt;<span class="title">T</span>&gt; =</span></span><br><span class="line"><span class="function">  | <span class="title">Ref</span>&lt;<span class="title">T</span>&gt; // <span class="title">ref</span></span></span><br><span class="line"><span class="function">  | (<span class="params">(</span>) =&gt; <span class="title">T</span>) // <span class="title">getter</span>  一个函数返回一个值</span></span><br><span class="line"><span class="function">  | <span class="title">T</span> <span class="title">extends</span> <span class="title">object</span>   // 一个对象  </span></span><br><span class="line"><span class="function">  ? <span class="title">T</span></span></span><br><span class="line"><span class="function">  : <span class="title">never</span> // 响应式对象</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">interface</span> <span class="title">WatchOptions</span> <span class="title">extends</span> <span class="title">WatchEffectOptions</span> </span>&#123;</span><br><span class="line">  immediate?: boolean <span class="comment">// 默认：false</span></span><br><span class="line">  deep?: boolean <span class="comment">// 默认：false</span></span><br><span class="line">  flush?: <span class="string">'pre'</span> | <span class="string">'post'</span> | <span class="string">'sync'</span> <span class="comment">// 默认：'pre'</span></span><br><span class="line">  onTrack?: <span class="function">(<span class="params">event: DebuggerEvent</span>) =&gt;</span> <span class="keyword">void</span></span><br><span class="line">  onTrigger?: <span class="function">(<span class="params">event: DebuggerEvent</span>) =&gt;</span> <span class="keyword">void</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>immediate： 在执行器创建时就执行</li>
+<li>deep： 如果时对象进行深度遍历</li>
+<li>flush：回调的刷新时机</li>
+<li>onTrack： 侦听侦听器的依赖</li>
+<li>onTrigger：侦听侦听器的依赖</li>
+</ul>
+<h1 id="响应式工具函数"><a href="#响应式工具函数" class="headerlink" title="响应式工具函数"></a>响应式工具函数</h1><h2 id="isRef"><a href="#isRef" class="headerlink" title="isRef()"></a>isRef()</h2><p>检查某个值是否是<code>ref</code>返回<code>true/false</code></p>
+<h2 id="unref"><a href="#unref" class="headerlink" title="unref()"></a>unref()</h2><p>如果参数是<code>ref</code>则返回內部值<code>.value</code>,如果不是则返回它自身</p>
+<h2 id="toRef"><a href="#toRef" class="headerlink" title="toRef()"></a>toRef()</h2><p>基于响应式对象的属性, 创建一个对应的<code>ref对象</code>,修改响应式对象上属性的值,将更新<code>ref对象</code>的值,反之亦然</p>
+<h2 id="toRefs"><a href="#toRefs" class="headerlink" title="toRefs()"></a>toRefs()</h2><p>将响应式对象转化为普通对象,这个普通对象上每个属性都转化为对应的<code>ref</code>, 都是使用的<code>toRef()</code>转化</p>
+<ul>
+<li>只转化可枚举属性,不存在得属性使用<code>toRef()</code></li>
+<li>最佳实践为 在组合式函数返回使用<code>toRefs()</code>,在使用时<strong>结构/展开</strong>而不丢失其响应式</li>
+</ul>
+<h2 id="isProxy"><a href="#isProxy" class="headerlink" title="isProxy()"></a>isProxy()</h2><p>检查对象是否是 <code>reactive()、readonly()、shallowReactive() 或 shallowReadonly()</code>创建的响应式对象,返回<code>true/false</code></p>
+<h2 id="isReactive"><a href="#isReactive" class="headerlink" title="isReactive()"></a>isReactive()</h2><p>检查对象是否由<code>reactive(), shallowReactive()</code>创建得响应式对象,返回<code>true/false</code></p>
+<h2 id="isReadonly"><a href="#isReadonly" class="headerlink" title="isReadonly()"></a>isReadonly()</h2><p>检查对象是否由<code>readonly(), shallowReadonly()</code>创建得响应式对象,返回<code>true/false</code></p>
+<ul>
+<li>readonly, shallowReadonly是没有<code>set</code>的<code>computed</code>的<code>Ref</code></li>
+</ul>
+<h1 id="响应式的进阶"><a href="#响应式的进阶" class="headerlink" title="响应式的进阶"></a>响应式的进阶</h1><h2 id="shallowRef"><a href="#shallowRef" class="headerlink" title="shallowRef()"></a>shallowRef()</h2><p>只会对<code>.value</code>的访问进行响应式,不会对其属性进行递归深层递归变为响应式</p>
+<h2 id="triggerRef"><a href="#triggerRef" class="headerlink" title="triggerRef()"></a>triggerRef()</h2><p>强制触发一个<code>shallowRef()</code>对象属性的值改变,监测是递归的</p>
+<h2 id="customRef"><a href="#customRef" class="headerlink" title="customRef()"></a>customRef()</h2><p>自定义一个<code>Ref</code>, 自定义其响应式的 <strong>追踪依赖</strong> 以及 <strong>更新触发</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">customRef</span>&lt;<span class="title">T</span>&gt;(<span class="params">factory: CustomRefFactory&lt;T&gt;</span>): <span class="title">Ref</span>&lt;<span class="title">T</span>&gt;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">type</span> <span class="title">CustomRefFactory</span>&lt;<span class="title">T</span>&gt; = (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  track: (</span>) =&gt; <span class="title">void</span>,</span></span><br><span class="line"><span class="function">  <span class="title">trigger</span>: (<span class="params"></span>) =&gt; <span class="title">void</span></span></span><br><span class="line"><span class="function">) =&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">get</span>: () =&gt; T</span><br><span class="line">  <span class="keyword">set</span>: (value: T) =&gt; void</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数为<code>track</code>和<code>trigger</code>, 一般 <code>track</code>实在 <code>get</code>中执行，<code>trigger</code>是在<code>set</code>中执行, 自己控制 依赖追踪 和 触发更新的时机</li>
+<li><code>get/set</code> 函数中可以使用异步</li>
+</ul>
+<h2 id="shallowReactive"><a href="#shallowReactive" class="headerlink" title="shallowReactive"></a>shallowReactive</h2><p>只对对象的根属性进行响应式,不会进行深层次的处理, 意味着值为<code>ref</code>的属性不会<strong>自动解包</strong>(template中解包)</p>
+<h2 id="shallowReadonly"><a href="#shallowReadonly" class="headerlink" title="shallowReadonly"></a>shallowReadonly</h2><p>只对对象的根属性进行响应式只读,不会进行深层次的处理, 意味着值为<code>ref</code>的属性不会<strong>自动解包</strong>(template中解包),<br>对其非根属性可以进行改写但是是非响应式的</p>
+<h2 id="toRaw"><a href="#toRaw" class="headerlink" title="toRaw"></a>toRaw</h2><p><code>toRaw()</code>可返回一个<code>reactive(), readonly(), shallowReactive(), shallowReadonly()</code>得原始对象</p>
+<ul>
+<li><code>toRaw()</code>返回得对象,读取不会影响跟踪依赖/代理访问,写入不会影响更新</li>
+<li>不建议保持对原始对应得保持使用,谨慎使用</li>
+</ul>
+<h2 id="markRaw"><a href="#markRaw" class="headerlink" title="markRaw"></a>markRaw</h2><p><code>markRaw()</code>标记一个对象不可被代理,返回该对象本身</p>
+<h2 id="effectScope"><a href="#effectScope" class="headerlink" title="effectScope"></a>effectScope</h2><p>创建一个<code>effect</code>的作用域,对副作用<code>(computed, watch, watchEffect)</code>进行统一处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> scope = effectScope()</span><br><span class="line"></span><br><span class="line">scope.run(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> doubled = computed(<span class="function"><span class="params">()</span> =&gt;</span> counter.value * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">  watch(doubled, () =&gt; <span class="built_in">console</span>.log(doubled.value))</span><br><span class="line"></span><br><span class="line">  watchEffect(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Count: '</span>, doubled.value))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理掉当前作用域内的所有 effect</span></span><br><span class="line">scope.stop()</span><br></pre></td></tr></table></figure>
+<h2 id="getCurrentScope"><a href="#getCurrentScope" class="headerlink" title="getCurrentScope"></a>getCurrentScope</h2><p>返回当前活跃的<code>effectScope</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCurrentScope</span>(<span class="params"></span>): <span class="title">EffectScope</span> | <span class="title">undefined</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="onScopeDispose"><a href="#onScopeDispose" class="headerlink" title="onScopeDispose"></a>onScopeDispose</h2><p>在当前或与的<code>effectScope</code>作用域上注册一个回调函数,当前的<code>effect</code>作用域停止时会回调这个函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onScopeDispose</span>(<span class="params">fn: (</span>) =&gt; <span class="title">void</span>): <span class="title">void</span></span></span><br></pre></td></tr></table></figure>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/01/11/算法-深度优先-广度优先/" data-toggle="tooltip" data-placement="top" title="算法-深度优先&广度优先">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        A Troupe of little vagrants of the world, leave your footprints in my words.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+<!-- netease; qqkg -->
+<!--
+<script src="/js/music-player/player.js?library=config.music.library.js"></script>
+-->
+<script src="../../../../js/music-player/player.js?library=netease&music=https://kg.qq.com/node/play?s=7deFpz7Z26Jmv7di&g_f=share_html"></script>
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Vue3-响应式原理"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Vue3 响应式原理</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ref-amp-reactive"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">ref &amp; reactive</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#track-跟踪"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">track 跟踪</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#trigger-触发"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">trigger 触发</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#watchEffect-响应式副作用"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">watchEffect  响应式副作用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#响应式的核心"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">响应式的核心</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ref"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">ref</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ref的解包"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">ref的解包</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#reactive"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">reactive</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#computed-计算属性"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">computed 计算属性</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#watchEffect-侦听器"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">watchEffect 侦听器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#类型"><span class="toc-nav-number">2.4.1.</span> <span class="toc-nav-text">类型</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#watch"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">watch</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#响应式工具函数"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">响应式工具函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isRef"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">isRef()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#unref"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">unref()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#toRef"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">toRef()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#toRefs"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">toRefs()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isProxy"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">isProxy()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isReactive"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">isReactive()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isReadonly"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">isReadonly()</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#响应式的进阶"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">响应式的进阶</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#shallowRef"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">shallowRef()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#triggerRef"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">triggerRef()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#customRef"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">customRef()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#shallowReactive"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">shallowReactive</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#shallowReadonly"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">shallowReadonly</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#toRaw"><span class="toc-nav-number">4.6.</span> <span class="toc-nav-text">toRaw</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#markRaw"><span class="toc-nav-number">4.7.</span> <span class="toc-nav-text">markRaw</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#effectScope"><span class="toc-nav-number">4.8.</span> <span class="toc-nav-text">effectScope</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#getCurrentScope"><span class="toc-nav-number">4.9.</span> <span class="toc-nav-text">getCurrentScope</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#onScopeDispose"><span class="toc-nav-number">4.10.</span> <span class="toc-nav-text">onScopeDispose</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#vue3" title="vue3">vue3</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://whitecutexu.github.io/" target="_blank">Whitecute&#39;s Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Whitecute&#39;s Web</a></li>
+                    
+                        <li><a href="https://github.com/whitecuteXu" target="_blank">Whitecute&#39;s Github</a></li>
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/whitecute">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; whitecute 2022 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;🌱&#34;,&#34;🍀&#34;,&#34;❤️&#34;,&#34;🔥&#34;,&#34;✨&#34;]' color='[&#34;rgb(121,93,179)&#34; ,&#34;rgb(76,180,231)&#34; ,&#34;rgb(184,90,154)&#34;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+</body>
+
+</html>
