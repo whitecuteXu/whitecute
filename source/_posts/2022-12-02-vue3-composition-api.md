@@ -316,4 +316,51 @@ type CustomRefFactory<T> = (
 只对对象的根属性进行响应式只读,不会进行深层次的处理, 意味着值为`ref`的属性不会**自动解包**(template中解包),
 对其非根属性可以进行改写但是是非响应式的
 
+## toRaw
+
+`toRaw()`可返回一个`reactive(), readonly(), shallowReactive(), shallowReadonly()`得原始对象
+
+- `toRaw()`返回得对象,读取不会影响跟踪依赖/代理访问,写入不会影响更新
+- 不建议保持对原始对应得保持使用,谨慎使用
+
+## markRaw
+
+
+`markRaw()`标记一个对象不可被代理,返回该对象本身
+
+
+## effectScope
+
+创建一个`effect`的作用域,对副作用`(computed, watch, watchEffect)`进行统一处理
+
+```js
+const scope = effectScope()
+
+scope.run(() => {
+  const doubled = computed(() => counter.value * 2)
+
+  watch(doubled, () => console.log(doubled.value))
+
+  watchEffect(() => console.log('Count: ', doubled.value))
+})
+
+// 处理掉当前作用域内的所有 effect
+scope.stop()
+```
+
+## getCurrentScope
+
+返回当前活跃的`effectScope`
+
+```js
+function getCurrentScope(): EffectScope | undefined
+```
+
+## onScopeDispose
+
+在当前或与的`effectScope`作用域上注册一个回调函数,当前的`effect`作用域停止时会回调这个函数
+
+```js
+function onScopeDispose(fn: () => void): void
+```
 
